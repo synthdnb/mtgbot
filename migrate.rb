@@ -12,13 +12,12 @@ data.each do |code, set|
         "card_id" => kname["multiverseid"],
         "price_id" => c["multiverseid"]
       }
-    else
-      new_data[c["name"].downcase.delete(" ").delete(",")] = {
-        "name" => c["name"],
-        "card_id" => c["multiverseid"],
-        "price_id" => c["multiverseid"]
-      }
     end
+    new_data[c["name"].downcase.delete(" ").delete(",")] = {
+      "name" => c["name"],
+      "card_id" => c["multiverseid"],
+      "price_id" => c["multiverseid"]
+    }
   end
 end
 
