@@ -14,7 +14,7 @@ client = Slack::RealTime::Client.new
 url = "http://gatherer.wizards.com/Handlers/Image.ashx?type=card&multiverseid="
 client.on :message do |msg|
   if msg.channel == "C0U7FHW66" && msg.text =~ /\[\[(.+)\]\]/
-    key = $1.downcase.delete(" ").delete(",")
+    key = $1.downcase.delete(" ,’'")
     cards = data.select{|x| x.include? key}
 
     if data[key]
