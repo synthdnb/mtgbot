@@ -7,14 +7,16 @@ data.each do |code, set|
   cards = set["cards"]
   cards.each do |c|
     if c["foreignNames"] && (kname = c["foreignNames"].find{|x| x["language"] == "Korean"}) && kname["multiverseid"]
-      new_data[kname["name"].downcase] = {
-        card_id: kname["multiverseid"],
-        price_id: c["multiverseid"]
+      new_data[kname["name"].downcase.delete(" ").delete(",")] = {
+        "name" => kname["name"],
+        "card_id" => kname["multiverseid"],
+        "price_id" => c["multiverseid"]
       }
     else
-      new_data[c["name"].downcase] = {
-        card_id: c["multiverseid"],
-        price_id: c["multiverseid"]
+      new_data[c["name"].downcase.delete(" ").delete(",")] = {
+        "name" => c["name"],
+        "card_id" => c["multiverseid"],
+        "price_id" => c["multiverseid"]
       }
     end
   end
