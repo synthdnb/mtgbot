@@ -17,12 +17,13 @@ def card_link card
 end
 
 client.on :message do |msg|
-  if msg.channel == "C0U7FHW66" && msg.text =~ /\[\[(.+)\]\]/
+  if msg.channel == "C0U7FHW66" && msg.text =~ /\[\[([^:]+)(?::(\w{2}))?\]\]/
     key = $1.downcase.delete(" ,’'")
     cards = data.select{|x| x.include? key}
 
     if data[key] || cards.count == 1
       exact = data[key] || cards.values.first
+      exact = data[exact["key_#{$2}"]] if $2
       if data[exact["key_en"]]["back"]
         back = data[data[data[exact["key_en"]]["back"]]["key_#{exact["lang"]}"]]
         client.web_client.chat_postMessage username: "매직봇", channel: msg.channel, text: "#{card_link(exact)} <=> #{card_link(back)}"
