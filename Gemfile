@@ -1,7 +1,7 @@
-source "https://rubygems.org"
+source "http://rubygems.org"
 
 gem "slack-ruby-client"
-gem "celluloid-io"
+gem "async-websocket"
 gem "pry"
 gem "oj"
 gem "dotenv"
